@@ -54,13 +54,6 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Build fix (account helpers were missing).
 - Escalating sign-in lockouts: 30 seconds, 1 minute, 5 minutes, 15 minutes, 30 minutes, then 1 hour after every 5 wrong tries. Saved on disk so a restart does not reset it; a parent can clear it from the menu.
 
-## 1.0.1 changes
-
-- New login screen built in the same web UI as the rest of the app (profile picker, PIN pad, password, pattern, grown-up setup).
-- Battery now updates every 10 seconds and the moment the charger is plugged or unplugged.
-- Address bar always matches the page.
-- 25 new features: switch-user button, auto return to login after 20 idle minutes (with a warning), delete account, 5-try lockout, show/hide password, Enter key and keyboard PIN entry, sign-in history, account avatars, last-user hint, signed-in name on the start page, forward button, loading spinner, shortcuts (Cmd+L, R, [, ], +, -, 0), shortcuts listed in Help, auto night theme, parent menu entries for accounts and history, and more.
-
 ## Honest notes
 
 - The Swift code compiles on your Mac when you run the script. If it fails, read `~/.kidlauncher/build.log`.
