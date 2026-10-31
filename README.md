@@ -1,7 +1,7 @@
 # kid-launcher
 Kid Zone
 A locked-down, kid-friendly launcher for macOS, shipped as one script (kid.sh). It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
-Current version: 1.0.1
+Current version: 1.0.2
 Install
 bash
 git clone https://github.com/safwaaniscooler123-netizen/kid-launcher
