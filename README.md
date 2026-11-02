@@ -1,10 +1,9 @@
-[README.md](https://github.com/user-attachments/files/34227441/README.md)
 # Kid Zone
 
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.0.2**
+**Current version: 1.1-beta-1 (beta)**
 
 ## Install
 
@@ -49,10 +48,23 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
 
+## 1.1-beta-1 changes
+
+- **Settings app with 50 settings** in five groups: Look (colors, text size, font, corners, spacing, contrast, black and white, dimming, background, tile size, emoji), Easier to use, Sound and voice, Start page, Learning and apps.
+- **Google Images with SafeSearch forced on.** A parent turns it on in the Parent menu ("Google Images + save pictures"). The 🖼 button searches for pictures; the ⬇ button saves the biggest picture on screen into `~/Kid Zone/Downloads` (shown in Photos and Files). Only image pages of Google are opened, nothing else on google.com.
+- **Camera Background Swap** (Settings > Camera background): pick a picture and the Camera finds you in each frame and puts the picture behind you, for photos and videos. Uses Apple's Vision person segmentation, so it needs macOS 12 or newer.
+
 ## 1.0.2 changes
 
 - Build fix (account helpers were missing).
 - Escalating sign-in lockouts: 30 seconds, 1 minute, 5 minutes, 15 minutes, 30 minutes, then 1 hour after every 5 wrong tries. Saved on disk so a restart does not reset it; a parent can clear it from the menu.
+
+## 1.0.1 changes
+
+- New login screen built in the same web UI as the rest of the app (profile picker, PIN pad, password, pattern, grown-up setup).
+- Battery now updates every 10 seconds and the moment the charger is plugged or unplugged.
+- Address bar always matches the page.
+- 25 new features: switch-user button, auto return to login after 20 idle minutes (with a warning), delete account, 5-try lockout, show/hide password, Enter key and keyboard PIN entry, sign-in history, account avatars, last-user hint, signed-in name on the start page, forward button, loading spinner, shortcuts (Cmd+L, R, [, ], +, -, 0), shortcuts listed in Help, auto night theme, parent menu entries for accounts and history, and more.
 
 ## Honest notes
 
