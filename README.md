@@ -1,9 +1,7 @@
-# Kid Zone
-
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.1-beta-1 (beta)**
+**Current version: 1.1**
 
 ## Install
 
@@ -47,6 +45,30 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Kid files: `~/Kid Zone`
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
+
+## 1.1 (main release)
+- **Your rocket icon** is the app icon.
+- **Installed in Applications.** After running the script once, open **Kid Zone** from your Applications folder (or `~/Applications`). No Terminal needed. Opening it twice just uses the one that is running.
+- **Birthdays.** Parent menu > "Set a kid's birthday". When that kid signs in on their birthday, Kid Zone celebrates with confetti, a song, a banner and 3 bonus stars (once a day).
+- **Old-style volume pop-up** also appears when the keys can't be intercepted yet (before Accessibility is allowed).
+
+## Earlier 1.1 updates
+- **Real app bundle.** Kid Zone is now built as a signed `KidZone.app` inside `~/.kidlauncher`, so macOS can finally show the Location prompt. After the first launch, allow Location in System Settings > Privacy & Security.
+- **Accessibility prompt** is asked once, then checked quietly. A rebuild clears the old stale permission row so you allow it once.
+- **Wi-Fi**: "Saved networks" and "Join by name" (no Location access needed).
+- **Volume keys**: hold Shift or Option for tiny steps. The macOS pop-up never shows.
+- **Settings**: 28 groups of 20 settings (26 look-and-feel groups, Wallpaper with pictures, Screensaver with videos) plus the 50 basic settings.
+- **Zoom** is allowed (camera and microphone too, if the camera is on).
+- **20 games** (not educational) unlock at 10 stars each day.
+
+## 1.1 changes
+
+- Fixed the purple screen: it came from the **Night / Auto theme**, which was deep purple (Auto switches to it after 7pm). Night is now dark blue with readable cards. Launch is also protected against a blank start page (the window is no longer purple, the page reloads itself if it does not appear, and page errors are written to `usage.log`).
+- Image wallpaper and a video screensaver (Settings > Wallpaper and screensaver).
+- Old-style gray volume and brightness pop-up. The keyboard volume/brightness keys are handled by Kid Zone and the modern macOS pop-up is hidden. This needs the **Accessibility** permission (macOS asks once); brightness uses a private Apple API.
+- Wi-Fi menu (📶) and Control Center (🎛) in the top bar. Changing the network or turning Wi-Fi off needs the parent password.
+- Websites a parent adds ("Allow a website") now show on the start page. Google Meet is allowed (camera and microphone only for meet.google.com).
+- 10 new apps: Breathing Buddy, Joke Box, Sticker Book, Silly Stories, Thankful Journal, Typing Race, Kindness Cards, Daily Challenge, Countdown, and a "More time?" request button.
 
 ## 1.1-beta-1 changes
 
