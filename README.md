@@ -57,11 +57,6 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - **Sticky Keys:** Shift five times turns it on (or use the Parent menu). Tap a modifier key once to hold it, twice to lock it, a third time to release it.
 - See `RELEASE_NOTES.md` for this version.
 
-## 1.1.0.1
-- **Dock > Quit no longer closes Kid Zone.** It stays open. Only the parent "Exit" closes it (shutdown and log out still work).
-- **No more bar at the top** on MacBooks with a camera notch.
-- **Saving pictures:** right-click (or two-finger click) any picture on a website and choose "Save picture to Downloads". The ⬇ button in the web toolbar still works. Needs the Files app turned on by a parent.
-
 ## 1.1 (main release)
 - **Your rocket icon** is the app icon.
 - **Installed in Applications.** After running the script once, open **Kid Zone** from your Applications folder (or `~/Applications`). No Terminal needed. Opening it twice just uses the one that is running.
