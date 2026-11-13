@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.1.1**
+**Current version: 1.1.1.0.1**
 
 ## Install
 
@@ -47,6 +47,10 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Kid files: `~/Kid Zone`
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
+
+## 1.1.1.0.1 (bug fix)
+- No more "boop" sound when you hold a key down in a game.
+- Snippet fixes (typing works again after Esc, the saved area always matches your selection), clearer Sticky Keys ON/OFF message, and held arrow keys still scroll pages.
 
 ## 1.1.1 (main release)
 - **Copy and Paste** work (Cmd+C, Cmd+V, Cmd+A) in text boxes, the address bar and web pages. There is **no Cut**.
