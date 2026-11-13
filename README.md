@@ -1,3 +1,5 @@
+# Kid Zone
+
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
@@ -46,6 +48,20 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
 
+## 1.1.1
+- **Copy and Paste** work (Cmd+C, Cmd+V, Cmd+A) in text boxes, the address bar and web pages. There is **no Cut**.
+- **macOS screenshots are blocked.** Cmd+Shift+3, 4, 5 and 6 do nothing (needs the Accessibility permission, same as the volume keys).
+- **Kid Zone snippet:** press Option+Cmd+Shift+S, drag over the part of the page you want, and the picture is saved in Photos. Needs the Files app turned on by a parent.
+- **Video snippets:** Option+Cmd+Shift+V, drag over the page, and it records that part (1 minute max). Press the keys again to stop. Saved in Photos.
+- **No snipping in Google Meet or Zoom** (a recording in progress stops and is deleted if the page changes to one of them).
+- **Sticky Keys:** Shift five times turns it on (or use the Parent menu). Tap a modifier key once to hold it, twice to lock it, a third time to release it.
+- See `RELEASE_NOTES.md` for this version.
+
+## 1.1.0.1
+- **Dock > Quit no longer closes Kid Zone.** It stays open. Only the parent "Exit" closes it (shutdown and log out still work).
+- **No more bar at the top** on MacBooks with a camera notch.
+- **Saving pictures:** right-click (or two-finger click) any picture on a website and choose "Save picture to Downloads". The ⬇ button in the web toolbar still works. Needs the Files app turned on by a parent.
+
 ## 1.1 (main release)
 - **Your rocket icon** is the app icon.
 - **Installed in Applications.** After running the script once, open **Kid Zone** from your Applications folder (or `~/Applications`). No Terminal needed. Opening it twice just uses the one that is running.
@@ -81,12 +97,9 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Build fix (account helpers were missing).
 - Escalating sign-in lockouts: 30 seconds, 1 minute, 5 minutes, 15 minutes, 30 minutes, then 1 hour after every 5 wrong tries. Saved on disk so a restart does not reset it; a parent can clear it from the menu.
 
-## 1.0.1 changes
+## 1.0 (first release)
 
-- New login screen built in the same web UI as the rest of the app (profile picker, PIN pad, password, pattern, grown-up setup).
-- Battery now updates every 10 seconds and the moment the charger is plugged or unplugged.
-- Address bar always matches the page.
-- 25 new features: switch-user button, auto return to login after 20 idle minutes (with a warning), delete account, 5-try lockout, show/hide password, Enter key and keyboard PIN entry, sign-in history, account avatars, last-user hint, signed-in name on the start page, forward button, loading spinner, shortcuts (Cmd+L, R, [, ], +, -, 0), shortcuts listed in Help, auto night theme, parent menu entries for accounts and history, and more.
+- 25 essential features in one script, with one consistent button style.
 
 ## Honest notes
 
