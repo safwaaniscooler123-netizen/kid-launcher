@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.1.2**
+**Current version: 1.1.2.1**
 
 ## Install
 
@@ -30,7 +30,7 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 
 ## Two modes
 
-- **Parent mode (home):** kid accounts (PIN, password, pattern or none), daily screen-time limit with automatic shutdown, bedtime, breaks, weekend limits, "Open apps" timed by the parent.
+- **Parent mode (home):** kid accounts (PIN, password, pattern or none; a birthday is required), daily screen-time limit with automatic shutdown, bedtime, breaks, weekend limits, "Open apps" timed by the parent.
 - **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports.
 
 ## What kids get
@@ -38,6 +38,31 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - One browser with an address bar (website or question, strict safe search), bookmarks, reload, stop, zoom and back/forward.
 - 80+ apps: quizzes and games, Book Log, Files, Photos, Camera (3 second countdown with the Photo Booth sound, photos and video), Writer, Piano, Pixel Art and more.
 - A start page with stars, favorites and a need-help button.
+
+## Age limits (new in 1.1.2.1)
+
+A kid account **must have a birthday** (Kid Zone accepts ages 3 to 18; anything older or younger is refused). The birthday decides what is unlocked, so older kids get more.
+
+<table>
+<thead>
+<tr><th align="left">Age</th><th align="left">Website groups</th><th align="left">App categories</th><th align="left">Camera, Files, Photos</th><th align="left">Search bar and Google Images</th></tr>
+</thead>
+<tbody>
+<tr><td>3</td><td>Watch and Play, School</td><td>My Computer, Create &amp; Play</td><td>Hidden</td><td>Off</td></tr>
+<tr><td>4</td><td>+ Reading and Writing</td><td>+ Reading &amp; Writing</td><td>Hidden</td><td>Off</td></tr>
+<tr><td>5</td><td>+ Math</td><td>+ Math</td><td>Shown</td><td>Off</td></tr>
+<tr><td>6</td><td>+ Science and Nature</td><td>+ Science, My World</td><td>Shown</td><td>Off</td></tr>
+<tr><td>7</td><td>+ Learn Anything</td><td>+ Tools</td><td>Shown</td><td>Off</td></tr>
+<tr><td>8</td><td>All groups</td><td>All except Brain Games</td><td>Shown</td><td>Allowed</td></tr>
+<tr><td>9 and up</td><td>All groups</td><td>All</td><td>Shown</td><td>Allowed</td></tr>
+</tbody>
+</table>
+
+- Ages 3 to 7 never get the Code and Typing group. The School group is allowed for them, including Google Docs and Sheets, except Google Slides and TeachHub (blocked below age 9).
+- **Blocked below age 9:** Google Slides (Docs and Sheets are allowed), TeachHub, Coolmath Games, Math Playground, the Writer app and the Brain Games apps.
+- Blocked sites are refused by the browser too, not only hidden from the start page.
+- Parent mode with no kid signed in, and Teacher mode, get everything. An old account with no birth year is treated as age 8; set it in Parent menu > "Set a kid's birthday".
+- To change the rules, edit `kzBigKidAge`, `kzYoungBlocked` and `kzAgeBlocked` (Swift) and `YOUNG_SITES`, `AGE_SITES` and `AGE_APPS` (JavaScript) in `kid.sh`.
 
 ## What is locked
 
@@ -50,6 +75,13 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Kid files: `~/Kid Zone`
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
+
+## 1.1.2.1
+- **Required birthday.** New kid accounts need a birthday (date picker). Ages 3 to 18 only. The Parent menu birthday dialog follows the same rule.
+- **Age limits.** Ages 3, 4, 5, 6 and 7 each have their own limits, age 8 has a few, and 9 and up get everything (see the table above). The School group is available to ages 3 to 7 too.
+- **More bedtimes.** 6 PM, 11 PM and 12 AM starts (all end at 7 AM) join 7, 8, 9 and 10 PM in the Parent menu and Settings. A **sleep warning** appears if the bedtime leaves less than 9 hours (11 PM and 12 AM); a parent can still keep it.
+- **Wrong name fixed.** The greeting, birthday banner and top bar now use the kid who is signed in. Before, a name a parent had typed in Settings (for example "Ava") could show for a different kid (for example "Sofia").
+- See `RELEASE_NOTES.md`.
 
 ## 1.1.2 (main release)
 - **The Parent menu "More" tab is organized** into sections: Accounts, Safety and access, Data and checks, Power (and Class in Teacher mode).
