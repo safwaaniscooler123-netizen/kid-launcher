@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.1.1.0.1**
+**Current version: 1.1.2**
 
 ## Install
 
@@ -20,6 +20,9 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 |---|---|
 | `./kid.sh` | Start Kid Zone |
 | `./kid.sh -reinstall` | Rebuild and re-register everything (keeps password and settings) |
+| `./kid.sh -update` | Check GitHub for the newest version (no betas) and offer to install it |
+| `./kid.sh -updatebeta` | Same, but beta versions count too |
+| `./kid.sh -downgrade` | Asks for the parent password, shows a warning, then lets you pick any version (betas too) to install |
 | `./kid.sh --reset-password` | Change the parent password |
 | `./kid.sh --usage` | Today's screen time and the activity log |
 | `./kid.sh --version` | Print the version |
@@ -48,11 +51,18 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
 
+## 1.1.2 (main release)
+- **The Parent menu "More" tab is organized** into sections: Accounts, Safety and access, Data and checks, Power (and Class in Teacher mode).
+- **Autocorrect is off** in the address bar, in Kid Zone's own text boxes and on every web page (no spell-check underlines, smart quotes or text replacement).
+- **No Cut in the address bar's right-click menu** (Copy and Paste stay).
+- **Updates:** run `./kid.sh -update` in Terminal. It checks GitHub for the newest release, compares it with your version, and offers to install it (password and settings are kept), replaces your kid.sh file with the new version and makes it executable (chmod +x). Betas are left out; use `./kid.sh -updatebeta` to include them.
+- **Downgrade:** `./kid.sh -downgrade` asks for the parent password, shows a warning (you must type YES), lists every GitHub version, and installs the one you pick. Your kid.sh is replaced with that version.
+
 ## 1.1.1.0.1 (bug fix)
 - No more "boop" sound when you hold a key down in a game.
 - Snippet fixes (typing works again after Esc, the saved area always matches your selection), clearer Sticky Keys ON/OFF message, and held arrow keys still scroll pages.
 
-## 1.1.1 (main release)
+## 1.1.1
 - **Copy and Paste** work (Cmd+C, Cmd+V, Cmd+A) in text boxes, the address bar and web pages. There is **no Cut**.
 - **macOS screenshots are blocked.** Cmd+Shift+3, 4, 5 and 6 do nothing (needs the Accessibility permission, same as the volume keys).
 - **Kid Zone snippet:** press Option+Cmd+Shift+S, drag over the part of the page you want, and the picture is saved in Photos. Needs the Files app turned on by a parent.
@@ -99,6 +109,25 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 ## 1.0 (first release)
 
 - 25 essential features in one script, with one consistent button style.
+
+## 1.0 beta
+
+- 27 kid-safe websites in groups on the home screen (YouTube Kids, Simple English Wikipedia, Cool Math 4 Kids, Coolmath Games, Matific, IXL, TeachHub and more), kept in one editable table that feeds the tiles and the allow list.
+- 10 learning games plus 6 built-in public-domain tunes (the 🎵 button cycles them).
+- One big browser with an address bar (safe search), reload, bookmarks and "Ask a grown-up" on blocked sites.
+- Files app (`~/Kid Zone`), Photos app, Camera app (3 second countdown, photos and video).
+- Teacher mode: student sign-in, school-only sites, announcements, lesson link, class timer, test mode, hall pass, raise hand, hand-in folder and reports.
+- 80+ apps in one Apps screen (Book Log, calculator, drawing pad, notes, to-do list, times tables and more).
+- Parent tools: weekend limit, pause the clock, volume cap, homework mode, games on/off, note to the child, activity log viewer, allow a website, YouTube Kids setup.
+- Shutdown, restart and volume done in Swift (no osascript); Restart button; closes the "Open apps, Dock, remove the launcher" loophole; launcher files flagged immutable.
+
+## 1.0 alpha
+
+- First working version: YouTube Kids, Simple English Wikipedia and Cool Math 4 Kids (only these).
+- Two learning games: Pizza Fractions and Cupcake Bakery.
+- Kiosk lock: no close, minimize or fullscreen buttons, no Dock or menu bar; Cmd+Tab, Cmd+Q, Force Quit and Hide disabled.
+- Parent password (salted PBKDF2), parent menu, daily screen-time limit with shutdown, Open apps mode, activity log.
+- Auto-restart if killed, starts at login, `-reinstall` and `--uninstall`.
 
 ## Honest notes
 
