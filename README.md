@@ -156,7 +156,25 @@ What helps (set in macOS, not in Kid Zone):
 1. Make the kid's account a **standard (non-admin)** user and keep the admin password to yourself. This matters most.
 2. **Intel Macs:** set a firmware password (blocks Safe Mode and Recovery at startup). Apple Silicon has no firmware password, but Recovery needs an admin login.
 3. Turn on **FileVault** so a password is needed before Safe Mode starts.
-4. Keep Apple's **Screen Time** and Content & Privacy limits on as a second layer; they still apply in Safe Mode.
+4. Keep Apple's **Screen Time** and Content & Privacy limits on as a second layer. They are enforced by macOS itself, not by Kid Zone, so they should still apply if the kid gets into Safe Mode. This has not been tested, so check it on your own Mac.
+
+## Last resort: block every other app with Apple's Screen Time
+
+**Only use this as a last resort.** It is an extra layer for the case where a kid gets out of Kid Zone (for example through Safe Mode) and you want every other app on their account to stop working. It is done in macOS, not in Kid Zone, and menu names can differ a little between macOS versions.
+
+1. Sign in to the **kid's account**. System Settings > **Screen Time** > turn it on.
+2. Open **App Limits** and turn them on. Press **Add Limit** (the + button).
+3. Tick every **category**, **except Kid Zone**. For the **Other** category, expand it and tick **every app except Kid Zone**.
+4. Set the time to **1 minute** and turn on **Block at End of Limit**.
+5. Set a Screen Time passcode so the kid cannot change it.
+
+**Very important: never include Kid Zone in the limit.** If Kid Zone is blocked, the launcher stops opening and the kid account is stuck, so double-check the list before you save. If it does happen, a parent can remove the limit from Screen Time (or from an admin account).
+
+Things to know:
+- Each limited app only works for about 1 minute a day, then it is blocked. That includes anything you open in Kid Zone's "Open apps" mode.
+- Some system apps (like Finder and System Settings) cannot be limited by Screen Time.
+- Apps installed later are not in the list, so check it again after installing something.
+- Screen Time cannot stop anyone from booting into Safe Mode or Recovery. The limits should still apply once the kid is there (untested), and the earlier steps in this section are what make Safe Mode hard to reach.
 
 ## Questions and answers
 
@@ -228,6 +246,9 @@ Kid Zone builds its app on your Mac the first time, and it needs the free Xcode 
 | Logging | Recorded in the activity log | Only the exit is logged |
 
 Use "Open apps" when your child needs another app for a while (for example, a school program). Use "Exit Kid Zone" when a grown-up wants to use the Mac normally. Both ask for the parent password. After "Exit Kid Zone", Kid Zone is not restarted automatically, but it starts again at the next login.
+
+**What if a kid gets out of Kid Zone and I want to block every other app?**
+As a last resort, use Apple's Screen Time App Limits on the kid's account: limit every category and every app in "Other" to 1 minute, except Kid Zone. Never include Kid Zone, or the launcher will stop opening. The steps are in "Last resort: block every other app with Apple's Screen Time" above.
 
 ## Honest notes
 
