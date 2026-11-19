@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.1.2.2**
+**Current version: 1.2 beta-1** (the main release, the newest non-beta, is 1.1.2.2)
 
 ## Install
 
@@ -51,9 +51,21 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
 
+## 1.2 beta-1 (beta)
+
+Based on 1.1.2.2. Betas are never installed automatically.
+
+- **New look for the Parent menu and prompts.** The parent menu, password prompts, birthday, delete account, sign-in history and the short-bedtime warning use the Kid Zone look (gradient, rounded colorful tabs, white cards) instead of native Mac dialogs. Esc always closes them, and if one fails to load it closes itself after 8 seconds. A few rarely used native alerts may remain.
+- **Safer builds.** The app is compiled from a private copy and only one setup can run at a time (fixes "main.swift was modified during the build").
+- **Updates in Settings.** A **Check for updates** button and an **Update automatically** checkbox (launcher Settings > Updates tile, parent password needed), with a full-screen "Getting ready for more fun!" progress screen.
+- **Put config in Settings.** Settings > Websites builds a configuration profile from Kid Zone's allowed websites for Apple's web filter and opens it for approval, instead of asking each time.
+- **Allow a website without a start-page tile.** The "Allow a website" dialog and Settings > Websites now have a "Don't show it on the start page" checkbox. The site is still allowed; it just does not get a tile under "Added by your grown-up".
+- **Beta updates, parent password only.** The Updates tile in the launcher Settings has an **Include beta versions** checkbox. Turning it on asks for the parent password, and installing a beta asks for it again. Automatic updates only ever install stable versions.
+- **Apple web filter option is off by default.** Tick "Turn on the Apple web filter option" before "Put config in Settings" works; the button also warns that the profile covers every account on the Mac.
+- The script is called `kid.sh` everywhere (the old `kidzone.sh` name is gone from the help text).
+
 ## 1.1.2.2 (main release)
 
-- **Allow a website without a start-page tile.** The "Allow a website" dialog and Settings > Websites now have a "Don't show it on the start page" checkbox. The site is still allowed; it just does not get a tile under "Added by your grown-up".
 - **Photos can always be closed.** The video player no longer has full-screen or picture-in-picture buttons (they could trap the screen), Esc closes it, and the Close button is bigger. The picture viewer now closes from a ✖ in the top-right corner, from a click on the dark background, from the Close button, or with Esc.
 
 ## 1.1.2.1
@@ -249,6 +261,17 @@ Use "Open apps" when your child needs another app for a while (for example, a sc
 
 **What if a kid gets out of Kid Zone and I want to block every other app?**
 As a last resort, use Apple's Screen Time App Limits on the kid's account: limit every category and every app in "Other" to 1 minute, except Kid Zone. Never include Kid Zone, or the launcher will stop opening. The steps are in "Last resort: block every other app with Apple's Screen Time" above.
+
+**I use Apple's Screen Time web limits, then allowed a website in Kid Zone, and it is still blocked. How do I fix it?**
+There are two separate allow-lists: Kid Zone's own, and Apple's Content & Privacy list that macOS enforces on top. Kid Zone cannot edit Apple's Screen Time list (it is protected by macOS and your Screen Time passcode). Instead, tick **Settings > Websites > Turn on the Apple web filter option** (it is off by default), then press **Put config in Settings** and confirm the warning. Kid Zone builds an Apple configuration profile from everything it allows and opens it; you approve it in System Settings (Privacy & Security > Profiles) with an admin password. After you allow a new site, press the button again to refresh it.
+Things to know first:
+- The profile is a web content filter that applies to **every account on this Mac**, including yours, not just the kid's. To remove it, select it under Profiles and press the minus button.
+- Set Apple's own web setting back to Unrestricted or "Limit Adult Websites" so the two lists do not fight.
+- It is built from Apple's documented web content filter profile for macOS 10.15 and later. It has not been tested on a Mac here, so try it on a spare account first.
+- The simplest option is not to use Apple's "Only Approved Websites" at all, because Kid Zone already blocks everything that is not on its list.
+
+**How do updates work inside Kid Zone?**
+The launcher Settings has an **Updates** tile (parent password needed) with a **Check for updates** button and an **Update automatically** checkbox (on by default). Kid Zone checks GitHub shortly after it starts and every 6 hours, only for the newest non-beta version. When it updates, a "Getting ready for more fun!" screen with a progress bar covers the Kid Zone while it downloads, builds and restarts. Your password, accounts and settings are kept. If the build fails, the old version keeps working and a message explains why. Auto updates are skipped in Teacher mode and while apps are unlocked. Kid Zone keeps its own copy of `kid.sh` in `~/.kidlauncher` for this; your original `kid.sh` is not changed, so `./kid.sh -update` still works for that file.
 
 ## Honest notes
 
