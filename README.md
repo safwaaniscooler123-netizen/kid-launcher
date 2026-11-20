@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.2 beta-1** (the main release, the newest non-beta, is 1.1.2.2)
+**Current version: 1.2 beta-2** (the main release, the newest non-beta, is 1.1.2.2)
 
 ## Install
 
@@ -31,7 +31,7 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 ## Two modes
 
 - **Parent mode (home):** kid accounts (PIN, password, pattern or none), daily screen-time limit with automatic shutdown, bedtime, breaks, weekend limits, "Open apps" timed by the parent.
-- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports.
+- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports. Laptops can also be paired with the web **teacher dashboard** (`teacher.html`) to control a whole class remotely, including viewing a student's Kid Zone screen.
 
 ## What kids get
 
@@ -50,6 +50,15 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Kid files: `~/Kid Zone`
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
+
+## 1.2 beta-2 (beta)
+
+Based on 1.2 beta-1. Betas are never installed automatically.
+
+- **"Keep students on this site" now works.** Sending a lesson link from the teacher dashboard opens it on every selected laptop right away. With the lock on, a student who ends up on another page is sent back within about 2 seconds, and the Home button goes to the lesson.
+- **View a student's screen.** Each laptop in the dashboard has a "View screen" button that shows the Kid Zone browser page, refreshed every 2 seconds. It only shows the Kid Zone window, not other apps. The student sees a "Your teacher is viewing this screen" notice when viewing starts, and it stops when the teacher closes the viewer.
+- **More dashboard controls:** lock with your own message, go to the home page, reload the page, ding, mute and unmute, turn learning games, search, Google Images, camera and files on or off, and switch homework mode on or off.
+- New `teacher.html` for the dashboard. The Supabase project needs the updated `kz_send_command` function (adds `reload`, `mute`, `unmute`).
 
 ## 1.2 beta-1 (beta)
 
@@ -233,7 +242,7 @@ Set a daily limit in the Parent menu. Kid Zone warns at 5 minutes and 1 minute l
 A parent can unlock every app except Terminal and other command-line tools for 15 minutes to 2 hours. When time runs out, or the apps are closed, Kid Zone comes back.
 
 **Does Kid Zone send my child's data anywhere?**
-Kid Zone itself has no cloud and no analytics. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). The only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
+Kid Zone has no analytics. The only cloud part is the optional teacher dashboard: if you pair a laptop with it, that laptop sends its status (name, signed-in student, current site, time used, battery) to your own Supabase project, and screenshots of the Kid Zone window only while a teacher has the viewer open. Unpaired laptops send nothing. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). Otherwise the only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
 
 **How do I remove it?**
 Run `./kid.sh --uninstall`. It asks for the parent password, then removes Kid Zone and its autostart.
