@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.2 beta-2** (the main release, the newest non-beta, is 1.1.2.2)
+**Current version: 1.2 beta-3** (the main release, the newest non-beta, is 1.1.2.2)
 
 ## Install
 
@@ -31,7 +31,7 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 ## Two modes
 
 - **Parent mode (home):** kid accounts (PIN, password, pattern or none), daily screen-time limit with automatic shutdown, bedtime, breaks, weekend limits, "Open apps" timed by the parent.
-- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports. Laptops can also be paired with the web **teacher dashboard** (`teacher.html`) to control a whole class remotely, including viewing a student's Kid Zone screen.
+- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports. Laptops can also be paired with the web **teacher dashboard** (`teacher.html`) to control a whole class remotely, including watching, controlling, typing on and hearing a student's Kid Zone from any browser, touchscreens too.
 
 ## What kids get
 
@@ -50,6 +50,19 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Kid files: `~/Kid Zone`
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
+
+## 1.2 beta-3 (beta)
+
+Based on 1.2 beta-2. Betas are never installed automatically. No Supabase change is needed.
+
+- **Control a student's laptop.** In the screen viewer, "Control" lets the teacher click, drag and scroll on the laptop with a finger or mouse. It only works while the viewer is open and needs the Accessibility permission.
+- **Typing.** A text box, key buttons and an on-screen QWERTY keyboard (Shift, Caps, numbers, symbols) type on the laptop.
+- **Sound from the laptop.** "Intercept Audio from screen to Your computer" plays the laptop's sound on the teacher's computer (macOS 13 or newer, Screen Recording permission). The student sees a notice, and the microphone is never used.
+- **Picture and sound stay in sync.** Both are time-stamped on the laptop and shown together (about half a second behind while sound is on).
+- **The screen picture shows the whole Kid Zone window** (camera, video player and lock screen too), live instead of every 2 seconds.
+- **Works on any wifi.** Timeouts, one retry, a "No connection" bar and automatic reconnect.
+- **Touch and full screen.** Pinch, drag and double-tap in the viewer, tap-to-select laptop cards, bigger buttons, and Full screen buttons.
+- Updated `teacher.html`.
 
 ## 1.2 beta-2 (beta)
 
@@ -221,7 +234,7 @@ No. `./kid.sh -update` and `-reinstall` keep your password, settings and account
 Yes: `./kid.sh -downgrade` asks for the parent password, shows a warning, then lets you pick any version.
 
 **Which Macs work?**
-macOS 10.13 or newer, Intel or Apple Silicon. Some features turn off on older macOS versions.
+macOS 10.13 or newer, Intel or Apple Silicon. Some features turn off on older macOS versions (for example, laptop sound for the teacher needs macOS 13).
 
 **Are we going to port this to Windows?**
 No, probably not. First of all, there is a LOT, and I mean a LOT, of ways to bypass this. Secondly, personally, I HATE WINDOWS BECAUSE OF BLOATWARE AND COPILOT. If someone wants to port this, you can, but I'm never going to add it to the main repo.
@@ -242,7 +255,7 @@ Set a daily limit in the Parent menu. Kid Zone warns at 5 minutes and 1 minute l
 A parent can unlock every app except Terminal and other command-line tools for 15 minutes to 2 hours. When time runs out, or the apps are closed, Kid Zone comes back.
 
 **Does Kid Zone send my child's data anywhere?**
-Kid Zone has no analytics. The only cloud part is the optional teacher dashboard: if you pair a laptop with it, that laptop sends its status (name, signed-in student, current site, time used, battery) to your own Supabase project, and screenshots of the Kid Zone window only while a teacher has the viewer open. Unpaired laptops send nothing. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). Otherwise the only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
+Kid Zone has no analytics. The only cloud part is the optional teacher dashboard: if you pair a laptop with it, that laptop sends its status (name, signed-in student, current site, time used, battery) to your own Supabase project, and pictures of the Kid Zone window (plus the laptop's sound, if the teacher presses the sound button) only while a teacher has the viewer open. Control and typing from the dashboard also only work then. Unpaired laptops send nothing. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). Otherwise the only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
 
 **How do I remove it?**
 Run `./kid.sh --uninstall`. It asks for the parent password, then removes Kid Zone and its autostart.
@@ -286,4 +299,5 @@ The launcher Settings has an **Updates** tile (parent password needed) with a **
 
 - The Swift code compiles on your Mac when you run the script. If it fails, read `~/.kidlauncher/build.log`.
 - macOS asks for camera and microphone permission the first time (and may ask again after a rebuild).
+- The beta-3 teacher features (control, typing, laptop sound, whole-window picture) were not run on a Mac here, so try them with one laptop first. Control and typing need the Accessibility permission, and laptop sound needs the Screen Recording permission.
 - A determined adult can always leave with the parent password; kids cannot.
