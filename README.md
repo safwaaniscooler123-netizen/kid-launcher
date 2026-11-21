@@ -3,7 +3,7 @@
 A locked-down, kid-friendly launcher for macOS, shipped as **one script** (`kid.sh`).
 It builds a small native kiosk app, starts it at login, and keeps kids inside a safe browser plus a set of learning apps. Only a parent (or teacher) password lets anyone leave.
 
-**Current version: 1.2 beta-3** (the main release, the newest non-beta, is 1.1.2.2)
+**Current version: 1.2 beta-4** (the main release, the newest non-beta, is 1.1.2.2)
 
 ## Install
 
@@ -31,7 +31,7 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 ## Two modes
 
 - **Parent mode (home):** kid accounts (PIN, password, pattern or none), daily screen-time limit with automatic shutdown, bedtime, breaks, weekend limits, "Open apps" timed by the parent.
-- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports. Laptops can also be paired with the web **teacher dashboard** (`teacher.html`) to control a whole class remotely, including watching, controlling, typing on and hearing a student's Kid Zone from any browser, touchscreens too.
+- **Teacher mode (school computer):** student name sign-in (optional class roster), school-only sites, no shutdown timer, announcements, lesson link, class timer, test mode, "eyes on me" lock, hall pass, raise hand, hand-in folder and class reports.
 
 ## What kids get
 
@@ -51,33 +51,35 @@ First run: create the parent password, choose **Parent** or **Teacher** mode, an
 - Settings, logs and allow lists: `~/.kidlauncher` (`allowlist.txt`, `allowed-extra.txt`, `blocked-extra.txt`, `blocked-words.txt`, `roster.txt`)
 - Backups and reports: `~/Kid Zone Backups`
 
+## 1.2 beta-4 (beta)
+
+Based on 1.2 beta-3.
+
+- **Beta update fix:** `-updatebeta`, the launcher's Check for updates and `-downgrade` now read release names like "1.2 beta 4" correctly, so betas show up in the list and a beta is no longer mistaken for the older 1.2 (which reinstalled the same version).
+- **12,000 word bank** (`words.json`, 4,000 Easy / 4,000 Medium / 4,000 Hard: 3-5, 6-7, 8-12 letters). Word Scramble and Listen & Spell have Easy/Medium/Hard buttons; Spelling Star levels 1-3 use the same lists. The list is built into `kid.sh` and also written to `words.json` in the app folder.
+
 ## 1.2 beta-3 (beta)
 
-Based on 1.2 beta-2. Betas are never installed automatically. No Supabase change is needed.
+Based on 1.2 beta-2.
 
-- **Control a student's laptop.** In the screen viewer, "Control" lets the teacher click, drag and scroll on the laptop with a finger or mouse. It only works while the viewer is open and needs the Accessibility permission.
-- **Typing.** A text box, key buttons and an on-screen QWERTY keyboard (Shift, Caps, numbers, symbols) type on the laptop.
-- **Sound from the laptop.** "Intercept Audio from screen to Your computer" plays the laptop's sound on the teacher's computer (macOS 13 or newer, Screen Recording permission). The student sees a notice, and the microphone is never used.
-- **Picture and sound stay in sync.** Both are time-stamped on the laptop and shown together (about half a second behind while sound is on).
-- **The screen picture shows the whole Kid Zone window** (camera, video player and lock screen too), live instead of every 2 seconds.
-- **Works on any wifi.** Timeouts, one retry, a "No connection" bar and automatic reconnect.
-- **Touch and full screen.** Pinch, drag and double-tap in the viewer, tap-to-select laptop cards, bigger buttons, and Full screen buttons.
-- Updated `teacher.html`.
+- **TeachHub for every student** (no longer a 9+ perk) and **First in Math** added for every student, ages 3 and up.
+
+- **Birthday picker** with Month / Day / Year boxes and a live MM/DD/YY line. New accounts ask for the birthday first.
+- **MP3 and HTML files open in Files.** Audio plays in the player, HTML opens in a sandbox (no internet, no forms, no pop-ups).
+- **Teacher dashboard (`teacher.html`).** Open the file in a browser, sign in with user, school ID and password, then pair laptops and control them. See "Teacher dashboard" below.
+- **Laptop pair.** Parent menu > Laptop pair shows an 8 digit code. Enter it in the dashboard. The same menu entry unpairs the laptop.
 
 ## 1.2 beta-2 (beta)
 
-Based on 1.2 beta-1. Betas are never installed automatically.
+Based on 1.2 beta-1.
 
-- **"Keep students on this site" now works.** Sending a lesson link from the teacher dashboard opens it on every selected laptop right away. With the lock on, a student who ends up on another page is sent back within about 2 seconds, and the Home button goes to the lesson.
-- **View a student's screen.** Each laptop in the dashboard has a "View screen" button that shows the Kid Zone browser page, refreshed every 2 seconds. It only shows the Kid Zone window, not other apps. The student sees a "Your teacher is viewing this screen" notice when viewing starts, and it stops when the teacher closes the viewer.
-- **More dashboard controls:** lock with your own message, go to the home page, reload the page, ding, mute and unmute, turn learning games, search, Google Images, camera and files on or off, and switch homework mode on or off.
-- New `teacher.html` for the dashboard. The Supabase project needs the updated `kz_send_command` function (adds `reload`, `mute`, `unmute`).
+- Every remaining pop-up uses the Kid Zone look instead of native Mac alerts (sign in, note, allow/block a site, bedtime and breaks, activity log, shut down, restart, Parent/Teacher mode, class tools).
 
 ## 1.2 beta-1 (beta)
 
 Based on 1.1.2.2. Betas are never installed automatically.
 
-- **New look for the Parent menu and prompts.** The parent menu, password prompts, birthday, delete account, sign-in history and the short-bedtime warning use the Kid Zone look (gradient, rounded colorful tabs, white cards) instead of native Mac dialogs. Esc always closes them, and if one fails to load it closes itself after 8 seconds. A few rarely used native alerts may remain.
+- **New look for the Parent menu and prompts.** The parent menu, password prompts, birthday, delete account, sign-in history and the short-bedtime warning use the Kid Zone look (gradient, rounded colorful tabs, white cards) instead of native Mac dialogs. Esc always closes them, and if one fails to load it closes itself after 8 seconds. In beta-2 no native alerts are left: sign in, notes, bedtime, allowing a site, shut down and the class tools use it too.
 - **Safer builds.** The app is compiled from a private copy and only one setup can run at a time (fixes "main.swift was modified during the build").
 - **Updates in Settings.** A **Check for updates** button and an **Update automatically** checkbox (launcher Settings > Updates tile, parent password needed), with a full-screen "Getting ready for more fun!" progress screen.
 - **Put config in Settings.** Settings > Websites builds a configuration profile from Kid Zone's allowed websites for Apple's web filter and opens it for approval, instead of asking each time.
@@ -93,7 +95,7 @@ Based on 1.1.2.2. Betas are never installed automatically.
 ## 1.1.2.1
 
 - **Birthday is required** when a kid account is created (ages 3 to 18 only). The Parent menu "Set a kid's birthday" follows the same rule.
-- **Age limits.** What a kid can open depends on their age: ages 3 to 7 each get fewer website groups and app categories and no search; age 8 has a few limits; age 9 and up get everything. Blocked below 9: Google Slides, TeachHub, Coolmath Games, Math Playground, Writer and the Brain Games apps. Blocked sites are refused by the browser, not just hidden. Parent mode with no kid signed in, and Teacher mode, are not limited.
+- **Age limits.** What a kid can open depends on their age: ages 3 to 7 each get fewer website groups and app categories and no search; age 8 has a few limits; age 9 and up get everything. Blocked below 9: Google Slides, Coolmath Games, Math Playground, Writer and the Brain Games apps. Blocked sites are refused by the browser, not just hidden. Parent mode with no kid signed in, and Teacher mode, are not limited.
 - **More bedtimes:** 6 PM, 11 PM and 12 AM starts (all end at 7 AM), with a warning when the bedtime leaves less than 9 hours of sleep.
 - **Fixed:** the greeting and birthday banner now always use the signed-in kid's name, not the name typed in Settings.
 
@@ -158,7 +160,7 @@ Based on 1.1.2.2. Betas are never installed automatically.
 
 ## 1.0 beta
 
-- 27 kid-safe websites in groups on the home screen (YouTube Kids, Simple English Wikipedia, Cool Math 4 Kids, Coolmath Games, Matific, IXL, TeachHub and more), kept in one editable table that feeds the tiles and the allow list.
+- 27 kid-safe websites in groups on the home screen (YouTube Kids, Simple English Wikipedia, Cool Math 4 Kids, Coolmath Games, Matific, IXL, First in Math, TeachHub and more), kept in one editable table that feeds the tiles and the allow list.
 - 10 learning games plus 6 built-in public-domain tunes (the 🎵 button cycles them).
 - One big browser with an address bar (safe search), reload, bookmarks and "Ask a grown-up" on blocked sites.
 - Files app (`~/Kid Zone`), Photos app, Camera app (3 second countdown, photos and video).
@@ -210,6 +212,17 @@ Things to know:
 - Apps installed later are not in the list, so check it again after installing something.
 - Screen Time cannot stop anyone from booting into Safe Mode or Recovery. The limits should still apply once the kid is there (untested), and the earlier steps in this section are what make Safe Mode hard to reach.
 
+## Teacher dashboard
+
+The dashboard is `teacher.html` (sign-in and dashboard in one file). `kid.sh` only contains the launcher and the pairing code; there is no dashboard inside it.
+
+- **Server:** a Supabase project (already set up with the tables and functions in the Kid-Zone project). The laptop and the page only know the public anon key. Nothing can be read from the tables directly; every action goes through checked functions, and the tables have Row Level Security on with no open policies.
+- **Make a teacher (admin, once):** in the Supabase SQL editor run `select kz_add_teacher('myschool', 'My School Name', 'mrsmith', 'a long password');` Teachers sign in with user `mrsmith`, school ID `myschool` and that password. 5 wrong tries lock that sign-in for 10 minutes.
+- **Pair a laptop:** on the laptop, Parent menu > Laptop pair. Type the code into the dashboard. A laptop is identified only by a long random secret in `~/.kidlauncher/cloud.id` (never shown anywhere).
+- **What a teacher can do:** announcement, pop-up message, lock/unlock, class timer, lesson link, allow/block a website, home-screen note, +15 minutes, daily limit, sign out, restart, shut down. Laptops check in every 6 seconds.
+- **Settings:** the Supabase address and key are at the top of `kid.sh` (or `url=` and `key=` lines in `~/.kidlauncher/cloud.cfg`) and at the top of `teacher.html`.
+- **Honest note:** this needs internet on the laptop, and the dashboard can only reach laptops that are on and running Kid Zone. Teachers can restart and shut down laptops, so only give accounts to people you trust.
+
 ## Questions and answers
 
 **Can a kid get around Kid Zone?**
@@ -234,7 +247,7 @@ No. `./kid.sh -update` and `-reinstall` keep your password, settings and account
 Yes: `./kid.sh -downgrade` asks for the parent password, shows a warning, then lets you pick any version.
 
 **Which Macs work?**
-macOS 10.13 or newer, Intel or Apple Silicon. Some features turn off on older macOS versions (for example, laptop sound for the teacher needs macOS 13).
+macOS 10.13 or newer, Intel or Apple Silicon. Some features turn off on older macOS versions.
 
 **Are we going to port this to Windows?**
 No, probably not. First of all, there is a LOT, and I mean a LOT, of ways to bypass this. Secondly, personally, I HATE WINDOWS BECAUSE OF BLOATWARE AND COPILOT. If someone wants to port this, you can, but I'm never going to add it to the main repo.
@@ -255,7 +268,7 @@ Set a daily limit in the Parent menu. Kid Zone warns at 5 minutes and 1 minute l
 A parent can unlock every app except Terminal and other command-line tools for 15 minutes to 2 hours. When time runs out, or the apps are closed, Kid Zone comes back.
 
 **Does Kid Zone send my child's data anywhere?**
-Kid Zone has no analytics. The only cloud part is the optional teacher dashboard: if you pair a laptop with it, that laptop sends its status (name, signed-in student, current site, time used, battery) to your own Supabase project, and pictures of the Kid Zone window (plus the laptop's sound, if the teacher presses the sound button) only while a teacher has the viewer open. Control and typing from the dashboard also only work then. Unpaired laptops send nothing. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). Otherwise the only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
+Kid Zone itself has no cloud and no analytics. Settings, accounts and logs stay on the Mac (in `~/.kidlauncher` and `~/Kid Zone`). The only network use is the websites your child opens, plus `-update` and `-downgrade`, which fetch releases from GitHub.
 
 **How do I remove it?**
 Run `./kid.sh --uninstall`. It asks for the parent password, then removes Kid Zone and its autostart.
@@ -299,5 +312,4 @@ The launcher Settings has an **Updates** tile (parent password needed) with a **
 
 - The Swift code compiles on your Mac when you run the script. If it fails, read `~/.kidlauncher/build.log`.
 - macOS asks for camera and microphone permission the first time (and may ask again after a rebuild).
-- The beta-3 teacher features (control, typing, laptop sound, whole-window picture) were not run on a Mac here, so try them with one laptop first. Control and typing need the Accessibility permission, and laptop sound needs the Screen Recording permission.
 - A determined adult can always leave with the parent password; kids cannot.
